@@ -16,7 +16,7 @@ const char *libName = "libil2cpp.so";
 
 JNIEXPORT jstring
 JNICALL
-Java_com_android_support_Main_apk(
+Java_com_mrfansi_mod_Main_apk(
     JNIEnv *env,
     jclass activityObject) {
   jstring str = env->NewStringUTF(
@@ -25,7 +25,7 @@ Java_com_android_support_Main_apk(
 }
 JNIEXPORT jstring
 JNICALL
-Java_com_android_support_Main_down(
+Java_com_mrfansi_mod_Main_down(
     JNIEnv *env,
     jclass activityObject) {
   jstring str = env->NewStringUTF("Telegram:@DarkSide | YouTube:Darkside");
@@ -34,7 +34,7 @@ Java_com_android_support_Main_down(
 
 JNIEXPORT jobjectArray
 JNICALL
-Java_com_android_support_Main_getFeatures(
+Java_com_mrfansi_mod_Main_getFeatures(
     JNIEnv *env,
     jclass activityObject) {
   jobjectArray ret;
@@ -59,7 +59,7 @@ Java_com_android_support_Main_getFeatures(
   return (ret);
 }
 JNIEXPORT void JNICALL
-Java_com_android_support_Main_Changes(
+Java_com_mrfansi_mod_Main_Changes(
     JNIEnv *env,
     jclass activityObject,
     jint
@@ -72,7 +72,7 @@ Java_com_android_support_Main_Changes(
 }
 JNIEXPORT jstring
 JNICALL
-Java_com_android_support_Menu_SliderString(
+Java_com_mrfansi_mod_Menu_SliderString(
     JNIEnv *env,
     jobject
     clazz,
@@ -131,7 +131,7 @@ Java_com_android_support_Menu_SliderString(
         NewStringUTF(SliderStr);
   }
   return env->
-      NewStringUTF(NULL);
+      NewStringUTF(nullptr);
 }
 }
 // ---------- Hooking ---------- //

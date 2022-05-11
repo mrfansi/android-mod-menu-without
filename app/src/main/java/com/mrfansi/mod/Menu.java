@@ -69,7 +69,7 @@ public class Menu {
     return alphaAnimation;
   }
 
-  public static Animation fadeout() { //Opening
+  public static Animation fadeOut() { //Opening
     AlphaAnimation alphaAnimation = new AlphaAnimation((float) zero, (float) one);
     alphaAnimation.setDuration(dur);
     return alphaAnimation;
