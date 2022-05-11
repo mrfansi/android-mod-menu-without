@@ -1,37 +1,52 @@
 apply plugin: 'com.android.application'
 
 android {
-
-    compileSdkVersion 30
-    buildToolsVersion "21.1.2"
-
-    defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-        ndk {
-            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86'
-        }
+  compileSdk 30
+  defaultConfig {
+    applicationId "com.mrfansi.mod"
+    minSdkVersion 30
+    versionCode 1
+    versionName "1.0"
+    ndk {
+      abiFilters 'armeabi-v7a', 'arm64-v8a'
     }
-    buildTypes {
-        release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-        debug {
-            shrinkResources false
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-        }
+    signingConfig signingConfigs.debug
+  }
+  buildTypes {
+    release {
+      shrinkResources false
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      versionNameSuffix '1.0.0'
+      multiDexEnabled false
     }
-    externalNativeBuild {
-        ndkBuild {
-            path file('src/main/jni/Android.mk')
-        }
+    debug {
+      shrinkResources false
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      multiDexEnabled false
+      signingConfig signingConfigs.debug
+      versionNameSuffix '1.0.0'
     }
+  }
+  externalNativeBuild {
+    ndkBuild {
+      path file('src/main/jni/Android.mk')
+    }
+  }
+  buildToolsVersion '33.0.0 rc3'
+  ndkVersion '24.0.8215888'
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+  dependenciesInfo {
+    includeInApk true
+    includeInBundle true
+  }
 }
 
+//dependencies must be placed below 'android' brackets to get it work on AIDE
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
 }
