@@ -1,4 +1,4 @@
-package com.android.support;
+package com.mrfansi.mod;
 
 import android.app.Application;
 import android.content.Context;
@@ -10,6 +10,7 @@ public class AppTest extends Application {
   public AppTest() {
     instance = this;
   }
+
 
   public static AppTest getInstance() {
     return instance;
@@ -23,9 +24,7 @@ public class AppTest extends Application {
 
   @Override // android.app.Application
   public void onCreate() {
-    //Used to test to launch menu with application context
-
-    Main.Start(this);
+    //Main.Start(this);
 
     super.onCreate();
   }

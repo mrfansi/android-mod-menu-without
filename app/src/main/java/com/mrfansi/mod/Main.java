@@ -1,4 +1,4 @@
-package com.mod;
+package com.mrfansi.mod;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,8 +10,6 @@ import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.mod.menu.Menu;
 
 public class Main {
   @SuppressLint("StaticFieldLeak")
@@ -31,14 +29,9 @@ public class Main {
   private static native String down();
 
   public static void Start(final Context context) {
-    System.loadLibrary("MyLibName");
+    System.loadLibrary("mrfansi");
     Handler handler = new Handler();
-    handler.postDelayed(new Runnable() {
-      @Override
-      public void run() {
-        new Main().MenuMain(context);
-      }
-    }, 500);
+    handler.postDelayed(() -> new Main().MenuMain(context), 500);
   }
 
   public final void MenuMain(final Context context) {
@@ -63,36 +56,19 @@ public class Main {
         String str = listFT[i];
         String[] split = str.split("_");
         if (str.contains("ButtonOnOff_")) {
-          menu.ButtonOnOff(feature, split[1], new Menu.ibt() {
-            public void OnWrite() {
-              Changes(feature, 0);
-            }
-          });
+          menu.ButtonOnOff(feature, split[1], () -> Changes(feature, 0));
         } else if (str.contains("Button_")) {
-          menu.Button(feature, split[1], new Menu.ibt() {
-            public void OnWrite() {
-              Changes(feature, 0);
-            }
-          });
+          menu.Button(feature, split[1], () -> Changes(feature, 0));
         } else if (str.contains("Hide_")) {
-          menu.Button(feature, split[1], new Menu.ibt() {
-            public void OnWrite() {
-              hide = !hide;
-            }
-          });
+          menu.Button(feature, split[1], () -> hide = !hide);
         } else if (str.contains("Text_")) {
           menu.addText(str.replace("Text_", ""));
         } else if (str.contains("SeekBar_")) {
 
-          menu.SeekBar(feature, split[1], Integer.parseInt(split[2]), Integer.parseInt(split[3]), new Menu.iit() {
-            public void OnWrite(int i) {
-              Changes(feature, i);
-            }
-          });
+          menu.SeekBar(feature, split[1], Integer.parseInt(split[2]), Integer.parseInt(split[3]), i1 -> Changes(feature, i1));
         }
       }
     } else {
-      Toast.makeText(context.getApplicationContext(), "Could not launch menu. Make sure the main class of the game is an Activity, not an Application context", Toast.LENGTH_LONG).show();
       Toast.makeText(context.getApplicationContext(), "Could not launch menu. Make sure the main class of the game is an Activity, not an Application context", Toast.LENGTH_LONG).show();
     }
   }

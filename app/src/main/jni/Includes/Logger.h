@@ -4,10 +4,10 @@
 #include <android/log.h>
 
 enum daLogType {
-    daDEBUG = 3,
-    daERROR = 6,
-    daINFO = 4,
-    daWARN = 5
+  daDEBUG = 3,
+  daERROR = 6,
+  daINFO = 4,
+  daWARN = 5
 };
 
 //Change this to another Log Tag if ya want. IN the batch script I provide you change the log tag then too

@@ -1,25 +1,43 @@
-package com.android.support;
+package com.mrfansi.mod;
 
-import android.animation.*;
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
-import android.app.*;
-import android.content.*;
-import android.content.res.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
-import android.os.*;
-
-import android.text.*;
-import android.util.*;
-import android.view.*;
-import android.widget.*;
+import android.app.Activity;
+import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.PixelFormat;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
+import android.os.Handler;
+import android.text.Html;
+import android.util.Base64;
+import android.view.Gravity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class Menu {
   protected int WIDTH, HEIGHT;
+  protected boolean requirePermission;
   protected Context context;
   protected boolean isIconVisible;
   protected boolean isMenuVisible;
@@ -51,18 +69,21 @@ public class Menu {
     return alphaAnimation;
   }
 
-  public static Animation fadeOut() { //Opening
+  public static Animation fadeout() { //Opening
     AlphaAnimation alphaAnimation = new AlphaAnimation((float) zero, (float) one);
     alphaAnimation.setDuration(dur);
     return alphaAnimation;
   }
 
 
+  public void setBackground(int RED) {
+  }
+
   public void addText(String str) {
     TextView textView = new TextView(context);
     textView.setText(Html.fromHtml("<u><b>" + str + "</b></u>"));
     textView.setTextColor(Color.WHITE);
-    textView.setTextSize(12.5f);
+    textView.setTextSize(12.3f);
     textView.setGravity(3);
     textView.setLayoutParams(new LinearLayout.LayoutParams(-1, -2));
     textView.setPadding(20, 0, 0, 0);
@@ -294,9 +315,10 @@ public class Menu {
   }
 
   public void setIconImage(String Icon) {
+
     byte[] decode = Base64.decode(Icon, 0);
     iconView.setImageBitmap(BitmapFactory.decodeByteArray(decode, 0, decode.length));
-    iconView.setPadding(dpi(7), dpi(7), 0, 0);
+    iconView.setPadding(dpi(10), dpi(10), 0, 0);
     iconView.setImageAlpha(200);
   }
 
@@ -354,6 +376,7 @@ public class Menu {
   }
 
   public void showMenu() {
+
     if (!isMenuVisible) {
       isIconVisible = false;
       parentBox.removeAllViews();
@@ -418,7 +441,7 @@ public class Menu {
           info = new LinearLayout(context);
           info.setOrientation(LinearLayout.VERTICAL);
           info.addView(cred, -1, -1);
-          headerLayout.addView(info, -1, -1);
+          headerLayout.addView(info, -1, -2);
           LinearLayout.LayoutParams mnp = (LinearLayout.LayoutParams) info.getLayoutParams();
           mnp.weight = 10;
           mnp.gravity = Gravity.CENTER;
@@ -431,7 +454,7 @@ public class Menu {
           mnp.gravity = Gravity.RIGHT;
           minimize.setLayoutParams(mnp);
           minimize.setPadding(0, dpi(10), dpi(10), dpi(10));
-          minimize.setOnClickListener(p1 -> showMenu());
+          minimize.setOnClickListener(p1 -> showIcon());
         }
         {
 
@@ -510,5 +533,9 @@ public class Menu {
 
   public static interface iit {
     void OnWrite(int i);
+  }
+
+  private int convertDipToPixels(int i) {
+    return (int) ((((float) i) * context.getResources().getDisplayMetrics().density) + 0.5f);
   }
 }
