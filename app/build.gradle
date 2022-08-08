@@ -44,6 +44,7 @@ android {
     includeInApk true
     includeInBundle true
   }
+  namespace 'com.mrfansi.mod'
 }
 
 //dependencies must be placed below 'android' brackets to get it work on AIDE

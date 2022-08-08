@@ -17,42 +17,42 @@ const char *libName = "libil2cpp.so";
 JNIEXPORT jstring
 JNICALL
 Java_com_mrfansi_mod_Main_apk(
-    JNIEnv *env,
-    jclass activityObject) {
+  JNIEnv *env,
+  jclass activityObject) {
   jstring str = env->NewStringUTF(
-      "    MR.ENGINEER");// do not earse the space this for normal text view
+    "    MR.ENGINEER");// do not earse the space this for normal text view
   return str;
 }
 JNIEXPORT jstring
 JNICALL
 Java_com_mrfansi_mod_Main_down(
-    JNIEnv *env,
-    jclass activityObject) {
-  jstring str = env->NewStringUTF("Telegram:@DarkSide | YouTube:Darkside");
+  JNIEnv *env,
+  jclass activityObject) {
+  jstring str = env->NewStringUTF("Build with love");
   return str;
 }
 
 JNIEXPORT jobjectArray
 JNICALL
 Java_com_mrfansi_mod_Main_getFeatures(
-    JNIEnv *env,
-    jclass activityObject) {
+  JNIEnv *env,
+  jclass activityObject) {
   jobjectArray ret;
   const char *features[] = {
-      "Text_Text︎",//0
-      "ButtonOnOff_ButtonOnOff",//1
-      "Button_Button",//2
-      "SeekBar_SeekBar_0_100",//3
-      "Text_Settings",
-      "Hide_Icon invisible",
+  //    "Text_Text︎",//0
+  //    "ButtonOnOff_ButtonOnOff",//1
+  //    "Button_Button",//2
+  //    "SeekBar_SeekBar_0_100",//3
+  //    "Text_Settings",
+  //    "Hide_Icon invisible",
   };
 
   int Total_Feature = (sizeof features /
                        sizeof features[0]); //Now you dont have to manually update the number everytime;
 
   ret = (jobjectArray)
-      env->NewObjectArray(Total_Feature, env->FindClass("java/lang/String"),
-                          env->NewStringUTF(""));
+    env->NewObjectArray(Total_Feature, env->FindClass("java/lang/String"),
+                        env->NewStringUTF(""));
   int i;
   for (i = 0; i < Total_Feature; i++)
     env->SetObjectArrayElement(ret, i, env->NewStringUTF(features[i]));
@@ -60,11 +60,11 @@ Java_com_mrfansi_mod_Main_getFeatures(
 }
 JNIEXPORT void JNICALL
 Java_com_mrfansi_mod_Main_Changes(
-    JNIEnv *env,
-    jclass activityObject,
-    jint
-    feature,
-    jint value) {
+  JNIEnv *env,
+  jclass activityObject,
+  jint
+  feature,
+  jint value) {
   switch (feature) {
     case 0 :
       break;
@@ -73,11 +73,11 @@ Java_com_mrfansi_mod_Main_Changes(
 JNIEXPORT jstring
 JNICALL
 Java_com_mrfansi_mod_Menu_SliderString(
-    JNIEnv *env,
-    jobject
-    clazz,
-    jint feature, jint
-    value) {
+  JNIEnv *env,
+  jobject
+  clazz,
+  jint feature, jint
+  value) {
 // You must count your features from 0, not 1
   const char *SliderStr;
   if (feature == 555) {
@@ -102,7 +102,7 @@ Java_com_mrfansi_mod_Menu_SliderString(
         break;
     }
     return env->
-        NewStringUTF(SliderStr);
+      NewStringUTF(SliderStr);
   }
   if (feature == 500) {
     switch (value) {
@@ -117,7 +117,7 @@ Java_com_mrfansi_mod_Menu_SliderString(
         break;
     }
     return env->
-        NewStringUTF(SliderStr);
+      NewStringUTF(SliderStr);
   }
   if (feature == 500) {
     if (value <= 15) {
@@ -128,10 +128,10 @@ Java_com_mrfansi_mod_Menu_SliderString(
       SliderStr = "High";
     }
     return env->
-        NewStringUTF(SliderStr);
+      NewStringUTF(SliderStr);
   }
   return env->
-      NewStringUTF(nullptr);
+    NewStringUTF(nullptr);
 }
 }
 // ---------- Hooking ---------- //
